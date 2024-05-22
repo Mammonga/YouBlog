@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/images/Logo.svg" alt="Logo" width="300">
+    
+    <h1 class="hero-title display-5 fw-bold text-body-emphasis">Welcome to YouBlog</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="hero-text lead mb-4">Your go-to platform for sharing your thoughts and ideas with the world. Join our community and start blogging today with the latest tools and features.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <form action="/new" method="GET">
+            <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Create Your First Post</button>
+        </form>
+      </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h1>All Posts</h1>
+    <div class="row">
+        <% posts.forEach(post => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= post.title %></h5>
+                        <p class="card-text"><%= post.content %></p>
+                        <a href="/posts/<%= post.id %>/edit" class="btn btn-primary">Edit</a>
+                        <form action="/posts/<%= post.id %>/delete" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
